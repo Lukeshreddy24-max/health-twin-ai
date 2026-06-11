@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000' })
-
+const api = axios.create({ baseURL: (import.meta.env.VITE_API_URL || 'http://localhost:8000') + '/api' })
 api.interceptors.request.use(config => {
   const user = JSON.parse(localStorage.getItem('ht_user') || 'null')
   if (user?.token) config.headers.Authorization = `Bearer ${user.token}`
